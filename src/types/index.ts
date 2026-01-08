@@ -1,12 +1,12 @@
 export interface NavItem{
     title: string;
-    href: string;
+    href?: string;
     description?: string;
 }
 
 export interface NavItemWithChildren extends NavItem{
-    card: NavItemWithChildren[];
-    menu: NavItemWithChildren[];
+    card?: NavItemWithChildren[];
+    menu?: NavItemWithChildren[];
     title: string;
 }
 
