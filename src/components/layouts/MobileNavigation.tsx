@@ -25,7 +25,7 @@ interface MobileNavigationProps {
 
 function MobileNavigation({items}: MobileNavigationProps) {
     return (
-      <div className="lg:hidden">
+      <div className="lg:hidden mx-3">
           <Sheet>
               <SheetTrigger asChild>
                   <Button variant="ghost">
@@ -50,7 +50,7 @@ function MobileNavigation({items}: MobileNavigationProps) {
                             >
                                   <AccordionItem value={items[0].title}>
                                     <AccordionTrigger>{items[0].title}</AccordionTrigger>
-                                        <AccordionContent className="flex flex-col gap-3 text-balance text-gray-500">
+                                        <AccordionContent className="flex flex-col gap-3 text-balance text-muted-foreground">
                                       {items[0].card.map((item) => (
                                           <SheetClose asChild>
                                               <Link to={item.href ?? ""} key={item.title}>{item.title}</Link>
