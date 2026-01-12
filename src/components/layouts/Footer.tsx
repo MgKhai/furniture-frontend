@@ -5,9 +5,9 @@ import NewsLetterForm from "@/components/news-letter.tsx";
 
 function Footer() {
     return (
-        <footer className="w-full border-t">
+        <footer className="w-full border-t overflow-hidden">
             <div className="container  justify-center mx-auto py-6  ">
-                <section className="flex flex-col md:flex-row gap-10 lg:gap-20 mx-3 md:0">
+                <section className="flex flex-col md:flex-row lg:justify-between gap-10 lg:gap-20 mx-3 md:0">
                     <section>
                         <Link to="/" className="flex items-center gap-2 ">
                             <Icons.logo className="size-7" aria-hidden="true" />
