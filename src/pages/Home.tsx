@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 import Couch from "@/data/images/couch.png"
 import {Button} from "@/components/ui/button.tsx";
+import {CarouselCard} from "@/components/products/CarouselCard.tsx";
+import {products} from "@/data/products.ts";
 
 function Home() {
     return (
@@ -24,6 +26,11 @@ function Home() {
                     </div>
                     {/*Image Section*/}
                     <img src={Couch} alt="Couch" className="w-full lg:w-3/5" />
+                </div>
+
+                {/*Carousel Card*/}
+                <div className="my-4">
+                    <CarouselCard products={products} />
                 </div>
             </div>
         </>
