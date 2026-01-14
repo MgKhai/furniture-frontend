@@ -4,11 +4,19 @@ import {Button} from "@/components/ui/button.tsx";
 import {CarouselCard} from "@/components/products/CarouselCard.tsx";
 import {products} from "@/data/products.ts";
 
+const Title = ({title, href, sideText}:{ title: string, href: string, sideText: string }) => (
+    <div className="flex flex-col md:flex-row justify-start md:justify-between gap-3">
+        <h1 className="text-2xl font-bold">{title}</h1>
+        <Link to={href} className="text-muted-foreground font-semibold underline">{sideText}</Link>
+    </div>
+);
+
 function Home() {
     return (
         <>
             <div className="container mx-auto">
-                <div className="flex flex-col lg:flex-row lg: justify-between items-start">
+                <div className="flex flex-col lg:flex-row lg:justify-between items-start">
+
                     {/*Text Section*/}
                     <div className="flex flex-col text-center lg:text-left mt-8 lg:mt-20 gap-4 lg:gap-6 lg:w-2/5">
                         <h1 className="text-4xl lg:text-6xl font-extrabold text-[#3b5d50]">Modern Interior Design Studio</h1>
@@ -24,6 +32,7 @@ function Home() {
                             </Button>
                         </div>
                     </div>
+
                     {/*Image Section*/}
                     <img src={Couch} alt="Couch" className="w-full lg:w-3/5" />
                 </div>
@@ -32,6 +41,12 @@ function Home() {
                 <div className="my-4">
                     <CarouselCard products={products} />
                 </div>
+
+                {/*Blog Section*/}
+                <div className="mt-15 mx-3 md:mx-0">
+                    <Title title="Recent Blogs" href="/blog" sideText="View All Posts" />
+                </div>
+
             </div>
         </>
     );

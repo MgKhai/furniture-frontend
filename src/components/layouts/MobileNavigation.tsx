@@ -41,7 +41,7 @@ function MobileNavigation({items}: MobileNavigationProps) {
         return null;
     }
     return (
-      <div className="lg:hidden mx-3">
+      <div className="lg:hidden">
           <Sheet>
               <SheetTrigger asChild>
                   <Button variant="ghost">
