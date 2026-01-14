@@ -32,11 +32,11 @@ export function CarouselCard({products}: ProductProps) {
                 {products.map((product) => (
                     <CarouselItem key={product.id} className="lg:basis-1/3">
                             <CardContent>
-                                <div className="border rounded-md flex items-center justify-start gap-3">
-                                    <img src={product.images[0]} alt={product.name} className="size-28 xl:size-25 rounded-l-md" />
+                                <div className="flex items-center justify-start gap-3">
+                                    <img src={product.images[0]} alt={product.name} className="size-28 xl:size-25" />
                                     <div className="flex flex-col gap-1">
-                                        <h3 className="text-sm font-bold">{product.name}</h3>
-                                        <p className="text-sm text-gray-600 mr-1">{product.description.length > 55 ? product.description.substring(0,55)+ '...' : product.description }</p>
+                                        <h3 className="text-sm font-bold line-clamp-1">{product.name}</h3>
+                                        <p className="text-sm line-clamp-2 text-gray-600 mr-1">{product.description}</p>
                                         <Link to={`/products/${product.id}`} className="text-sm font-semibold text-[#3b5d50] hover:underline">Read More</Link>
                                     </div>
                                 </div>

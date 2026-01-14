@@ -20,7 +20,7 @@ interface MainNavigationProps {
 function MainNavigation({items}: MainNavigationProps) {
 
     return (
-        <div className="hidden gap-7 lg:flex mx-3">
+        <div className="hidden gap-7 lg:flex ">
             <Link to="/" className="flex items-center space-x-2">
                 <Icons.logo className="size-8" aria-hidden="true" />
                 <span className="font-bold text-lg">{siteConfig.name}</span>
