@@ -3,6 +3,9 @@ import Couch from "@/data/images/couch.png"
 import {Button} from "@/components/ui/button.tsx";
 import {CarouselCard} from "@/components/products/CarouselCard.tsx";
 import {products} from "@/data/products.ts";
+import BlogCard from "@/components/blogs/BlogCard.tsx";
+import {posts} from "@/data/posts.ts";
+
 
 const Title = ({title, href, sideText}:{ title: string, href: string, sideText: string }) => (
     <div className="flex flex-col md:flex-row justify-start md:justify-between gap-3">
@@ -10,6 +13,8 @@ const Title = ({title, href, sideText}:{ title: string, href: string, sideText: 
         <Link to={href} className="text-muted-foreground font-semibold underline">{sideText}</Link>
     </div>
 );
+
+const simplePosts = posts.slice(0,3);
 
 function Home() {
     return (
@@ -43,9 +48,10 @@ function Home() {
                 </div>
 
                 {/*Blog Section*/}
-                <div className="mt-15 mx-3 md:mx-0">
+                <div className="mt-15 mb-10 mx-3 md:mx-0">
                     <Title title="Recent Blogs" href="/blog" sideText="View All Posts" />
                 </div>
+                <BlogCard posts={simplePosts} />
 
             </div>
         </>
