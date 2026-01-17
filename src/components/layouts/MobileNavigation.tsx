@@ -79,7 +79,7 @@ function MobileNavigation({items}: MobileNavigationProps) {
                       <div className="flex flex-col gap-3 text-sm pt-2">
                           {items?.[0]?.menu && (
                               items[0].menu.map((item) => (
-                                  <SheetClose asChild>
+                                  <SheetClose asChild key={item.title}>
                                       <SheetClose asChild>
                                           <Link to={item.href ?? ""} key={item.title}>{item.title}</Link>
                                       </SheetClose>

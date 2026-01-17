@@ -68,7 +68,7 @@ function MainNavigation({items}: MainNavigationProps) {
 
                     {items?.[0].menu && (
                         items[0].menu.map((item) => (
-                            <NavigationMenuItem>
+                            <NavigationMenuItem key={item.title}>
                                 <NavigationMenuLink>
                                     <Link to={item.href ?? ""}>{item.title}</Link>
                                 </NavigationMenuLink>
