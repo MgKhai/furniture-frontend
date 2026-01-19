@@ -6,6 +6,9 @@ import ErrorPage from "@/pages/Error.tsx";
 import Blog from "@/pages/blogs/Blog.tsx";
 import BlogRootLayout from "@/pages/blogs/BlogRootLayout.tsx";
 import BlogDetail from "@/pages/blogs/Detail.tsx";
+import ProductRootLayout from "@/pages/products/ProductRootLayout.tsx";
+import ProductPage from "@/pages/products/Product.tsx";
+import ProductDetail from "@/pages/products/Detail.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -19,6 +22,12 @@ export const router = createBrowserRouter([
                 children: [
                     {index: true, Component: Blog},
                     {path: ":postId", Component: BlogDetail}
+                ]
+            },
+            {path: 'product', Component: ProductRootLayout,
+                children: [
+                    {index: true, Component: ProductPage},
+                    {path: ":productId", Component: ProductDetail}
                 ]
             },
         ]
