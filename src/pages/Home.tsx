@@ -2,9 +2,10 @@ import { Link } from "react-router";
 import Couch from "@/data/images/couch.png"
 import {Button} from "@/components/ui/button.tsx";
 import {CarouselCard} from "@/components/products/CarouselCard.tsx";
-import {products} from "@/data/products.ts";
 import BlogCard from "@/components/blogs/BlogCard.tsx";
 import {posts} from "@/data/posts.ts";
+import {products} from "@/data/products.ts";
+import ProductCard from "@/components/products/ProductCard.tsx";
 
 
 const Title = ({title, href, sideText}:{ title: string, href: string, sideText: string }) => (
@@ -15,6 +16,7 @@ const Title = ({title, href, sideText}:{ title: string, href: string, sideText: 
 );
 
 const simplePosts = posts.slice(0,3);
+const simpleProducts = products.slice(0,4);
 
 function Home() {
     return (
@@ -46,6 +48,12 @@ function Home() {
                 <div className="my-4">
                     <CarouselCard products={products} />
                 </div>
+
+                {/*Product Section*/}
+                <div className="mt-15 mb-10 mx-3 md:mx-0">
+                    <Title title="Featured Products" href="/product" sideText="View All Posts" />
+                </div>
+                <ProductCard products={simpleProducts} />
 
                 {/*Blog Section*/}
                 <div className="mt-15 mb-10 mx-3 md:mx-0">
