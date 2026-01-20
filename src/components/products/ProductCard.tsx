@@ -11,6 +11,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import {formatPrice} from "@/lib/utils.ts";
 
 interface ProductProps {
     products: Product[];
@@ -18,7 +19,7 @@ interface ProductProps {
 
 function ProductCard({products}: ProductProps) {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-3 lg:px-0">
+        <>
             {products.map((product) => (
                 <div className="">
                     <Card className="w-full overflow-hidden p-0">
@@ -36,9 +37,11 @@ function ProductCard({products}: ProductProps) {
                             <CardContent className="space-y-2">
                                 <CardTitle className="line-clamp-1">{product.name}</CardTitle>
                                 <CardDescription className="line-clamp-1">
-                                    $ {product.price}
+                                    {formatPrice(product.price)}
                                     {product.discount > 0 && (
-                                        <span className="ml-2 font-extralight line-through">$ {product.discount}</span>
+                                        <span className="ml-2 font-extralight line-through">
+                                            {formatPrice(product.discount)}
+                                        </span>
                                     )}
                                 </CardDescription>
                             </CardContent>
@@ -59,7 +62,7 @@ function ProductCard({products}: ProductProps) {
                     </Card>
                 </div>
             ))}
-        </div>
+        </>
     );
 }
 

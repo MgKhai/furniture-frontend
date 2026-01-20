@@ -35,3 +35,15 @@ export type Post = {
     updated_at: string,
     tags: string[]
 };
+
+export interface FilterItem{
+    id: string,
+    label: string,
+}
+
+export interface FilterItemWithChildren extends FilterItem{
+    types? : FilterItem[];
+    categories?: FilterItem[];
+}
+
+export type MainFilterItem = FilterItemWithChildren;
