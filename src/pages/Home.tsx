@@ -53,7 +53,9 @@ function Home() {
                 <div className="mt-15 mb-10 mx-3 md:mx-0">
                     <Title title="Featured Products" href="/product" sideText="View All Posts" />
                 </div>
-                <ProductCard products={simpleProducts} />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-3 lg:px-0">
+                    <ProductCard products={simpleProducts} />
+                </div>
 
                 {/*Blog Section*/}
                 <div className="mt-15 mb-10 mx-3 md:mx-0">
