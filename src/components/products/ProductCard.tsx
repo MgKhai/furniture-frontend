@@ -15,13 +15,14 @@ import {formatPrice} from "@/lib/utils.ts";
 
 interface ProductProps {
     products: Product[];
+    className?: string;
 }
 
-function ProductCard({products}: ProductProps) {
+function ProductCard({products, className}: ProductProps) {
     return (
         <>
             {products.map((product) => (
-                <div className="">
+                <div className={className}>
                     <Card className="w-full overflow-hidden p-0">
                         <Link to={`/product/${product.id}`}>
                             <CardHeader className="p-0">
