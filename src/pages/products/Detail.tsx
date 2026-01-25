@@ -15,6 +15,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import ProductCard from "@/components/products/ProductCard.tsx";
 import {formatPrice} from "@/lib/utils.ts";
 import Rating from "@/components/products/Rating.tsx";
+import AddToFavourite from "@/components/products/AddToFavourite.tsx";
 
 function ProductDetail(){
     const {productId} = useParams();
@@ -52,18 +53,19 @@ function ProductDetail(){
 
                 <Separator className="md:hidden my-6" />
                 <div className="md:w-1/2 w-full flex flex-col gap-4 ">
-                    <div>
+                    <div className="flex flex-col gap-2">
                         <h2 className="line-clamp-1 text-2xl font-bold">{product?.name}</h2>
                         {product?.price && (
                             <p className="text-base text-muted-foreground">{formatPrice(Number(product.price))}</p>
                         )}
                     </div>
-                    <Separator className="my-1.5" />
+                    <Separator />
                     <p className="text-base text-muted-foreground">{product?.inventory} in stock</p>
                     <div>
                         <div className="flex flex-row justify-between items-center">
                             <Rating rating={Number(product?.rating)}  />
-                            <Button variant="secondary"><Icons.heart /></Button>
+                            {/*<AddToFavourite productId={string(product?.id)} rating={number(product?.rating)} />*/}
+                            <AddToFavourite />
                         </div>
                         <div></div>
                     </div>
