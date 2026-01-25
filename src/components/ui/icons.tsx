@@ -1,4 +1,4 @@
-import { HomeIcon, HamburgerMenuIcon, PaperPlaneIcon, ExclamationTriangleIcon, ArrowLeftIcon, LayersIcon, PlusIcon } from "@radix-ui/react-icons"
+import { HomeIcon, HamburgerMenuIcon, PaperPlaneIcon, ExclamationTriangleIcon, ArrowLeftIcon, LayersIcon, PlusIcon, StarIcon, StarFilledIcon, HeartIcon } from "@radix-ui/react-icons"
 import * as React from "react";
 
 export type IconProps = React.SVGProps<SVGSVGElement>;
@@ -18,5 +18,8 @@ export const Icons = {
     exclamationTriangle: ExclamationTriangleIcon,
     arrowLeft: ArrowLeftIcon,
     layers: LayersIcon,
-    plus: PlusIcon
+    plus: PlusIcon,
+    star: StarIcon,
+    starFilled: StarFilledIcon,
+    heart: HeartIcon,
 }
