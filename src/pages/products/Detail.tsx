@@ -13,6 +13,8 @@ import {
 import Autoplay from "embla-carousel-autoplay"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import ProductCard from "@/components/products/ProductCard.tsx";
+import {formatPrice} from "@/lib/utils.ts";
+import Rating from "@/components/products/Rating.tsx";
 
 function ProductDetail(){
     const {productId} = useParams();
@@ -27,7 +29,7 @@ function ProductDetail(){
             <Button variant="outline" asChild >
                 <Link to="/product"> <Icons.arrowLeft aria-hidden="true" /> All Products </Link>
             </Button>
-            <section className="flex flex-col md:flex-row mt-6 mb-15">
+            <section className="flex flex-col md:flex-row mt-6 mb-15 md:gap-12 gap5">
 
                 {/*Carousel Product Image*/}
                 <div className="md:w-1/2">
@@ -45,12 +47,32 @@ function ProductDetail(){
                             ))}
                         </CarouselContent>
                     </Carousel>
+
                 </div>
 
-                <Separator className="mt-4 md:hidden" />
+                <Separator className="md:hidden my-6" />
+                <div className="md:w-1/2 w-full flex flex-col gap-4 ">
+                    <div>
+                        <h2 className="line-clamp-1 text-2xl font-bold">{product?.name}</h2>
+                        {product?.price && (
+                            <p className="text-base text-muted-foreground">{formatPrice(Number(product.price))}</p>
+                        )}
+                    </div>
+                    <Separator className="my-1.5" />
+                    <p className="text-base text-muted-foreground">{product?.inventory} in stock</p>
+                    <div>
+                        <div className="flex flex-row justify-between items-center">
+                            <Rating rating={Number(product?.rating)}  />
+                            <Button variant="secondary"><Icons.heart /></Button>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
 
-                <div className="md:w-1/2"></div>
+
+
             </section>
+
             <section>
                 <h2 className="line-clamp-1 text-2xl font-bold my-6">More Products From Furniture Shop</h2>
 
