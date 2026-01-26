@@ -1,14 +1,16 @@
+import {lazy, Suspense} from "react";
 import { createBrowserRouter } from "react-router";
 import RootLayout from "@/pages/RootLayout.tsx";
 import HomePage from "@/pages/Home.tsx";
 import AboutPage from "@/pages/About.tsx";
 import ErrorPage from "@/pages/Error.tsx";
-import Blog from "@/pages/blogs/Blog.tsx";
-import BlogRootLayout from "@/pages/blogs/BlogRootLayout.tsx";
-import BlogDetail from "@/pages/blogs/Detail.tsx";
 import ProductRootLayout from "@/pages/products/ProductRootLayout.tsx";
 import ProductPage from "@/pages/products/Product.tsx";
 import ProductDetail from "@/pages/products/Detail.tsx";
+
+const Blog = lazy(() => import("@/pages/blogs/Blog.tsx"));
+const BlogDetail = lazy(() => import("@/pages/blogs/Detail.tsx"));
+const BlogRootLayout = lazy(() => import("@/pages/blogs/BlogRootLayout.tsx"));
 
 export const router = createBrowserRouter([
     {
@@ -18,10 +20,19 @@ export const router = createBrowserRouter([
         children: [
             {index: true, Component: HomePage,},
             {path:'about', Component: AboutPage},
-            {path: 'blog', Component:BlogRootLayout,
+            {path: 'blog', element:
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <BlogRootLayout />
+                    </Suspense>,
                 children: [
-                    {index: true, Component: Blog},
-                    {path: ":postId", Component: BlogDetail}
+                    {index: true, element:
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <Blog />
+                            </Suspense>},
+                    {path: ":postId", element:
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <BlogDetail />
+                            </Suspense>}
                 ]
             },
             {path: 'product', Component: ProductRootLayout,

@@ -16,6 +16,7 @@ import ProductCard from "@/components/products/ProductCard.tsx";
 import {formatPrice} from "@/lib/utils.ts";
 import Rating from "@/components/products/Rating.tsx";
 import AddToFavourite from "@/components/products/AddToFavourite.tsx";
+import AddToCartForm from "@/components/products/AddToCartForm.tsx";
 
 function ProductDetail(){
     const {productId} = useParams();
@@ -67,7 +68,9 @@ function ProductDetail(){
                             {/*<AddToFavourite productId={string(product?.id)} rating={number(product?.rating)} />*/}
                             <AddToFavourite />
                         </div>
-                        <div></div>
+                        <div className="my-5">
+                            <AddToCartForm canBuy={product?.status === "active"} />
+                        </div>
                     </div>
                 </div>
 
