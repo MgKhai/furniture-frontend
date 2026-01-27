@@ -4,6 +4,12 @@ import {products} from "@/data/products.ts";
 import {Button} from "@/components/ui/button.tsx";
 import {Icons} from "@/components/ui/icons.tsx";
 import { Separator } from "@/components/ui/separator"
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
 
 import {
     Carousel,
@@ -52,7 +58,7 @@ function ProductDetail(){
 
                 </div>
 
-                <Separator className="md:hidden my-6" />
+                <Separator className="md:hidden my-5" />
                 <div className="md:w-1/2 w-full flex flex-col gap-4 ">
                     <div className="flex flex-col gap-2">
                         <h2 className="line-clamp-1 text-2xl font-bold">{product?.name}</h2>
@@ -71,6 +77,21 @@ function ProductDetail(){
                         <div className="my-5">
                             <AddToCartForm canBuy={product?.status === "active"} />
                         </div>
+                        <Separator className="md:hidden my-5" />
+                        <Accordion
+                            type="single"
+                            collapsible
+                            className="w-full"
+                            defaultValue="item-1"
+                        >
+                            <AccordionItem value="item-1">
+                                <AccordionTrigger>Description</AccordionTrigger>
+                                <AccordionContent>
+                                    {product?.description ?? "No description is available for this product."}
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+
                     </div>
                 </div>
 
