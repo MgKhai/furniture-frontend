@@ -24,10 +24,11 @@ interface ShowBuyNowProps {
     canBuy: boolean
 }
 
+type QuantityForm = z.infer<typeof quantitySchema>;
 
 export default function AddToCartForm({canBuy}: ShowBuyNowProps) {
 
-    const form = useForm<z.infer<typeof quantitySchema>>({
+    const form = useForm<QuantityForm>({
         resolver: zodResolver(quantitySchema),
         defaultValues: {
             quantity: 1,
@@ -35,8 +36,8 @@ export default function AddToCartForm({canBuy}: ShowBuyNowProps) {
     });
 
 
-    function onSubmit(values: z.infer<typeof quantitySchema>) {
-        console.log(values)
+    function onSubmit(values: QuantityForm) {
+        console.log(values.quantity);
         toast.success("Product is added to the cart successfully.");
     }
 
