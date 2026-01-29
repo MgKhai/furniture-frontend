@@ -47,3 +47,12 @@ export interface FilterItemWithChildren extends FilterItem{
 }
 
 export type MainFilterItem = FilterItemWithChildren;
+
+export type User = {
+    id: string,
+    firstName: string,
+    secondName: string,
+    userName: string,
+    email: string,
+    imageUrl: string
+}
