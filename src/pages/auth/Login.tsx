@@ -12,7 +12,7 @@ function LoginPage(){
            </Link>
            <div className="grid min-h-screen lg:grid-cols-2 grid-cols-1">
 
-               <div className="flex items-center justify-center xl:p-0 pb-6 px-2">
+               <div className="grid place-items-center mx-auto max-w-sm xl:p-0 pb-6 px-6">
                    <LoginForm className="h-130" />
                </div>
                <div className="hidden lg:block">
