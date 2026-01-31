@@ -15,7 +15,7 @@ import {
     CreditCardIcon,
     LogOutIcon,
     SettingsIcon,
-    LayoutDashboardIcon
+    LayoutDashboardIcon,
 } from "lucide-react"
 
 
