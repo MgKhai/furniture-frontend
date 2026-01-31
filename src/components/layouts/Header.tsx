@@ -4,6 +4,7 @@ import {siteConfig} from "@/config/site.ts";
 import {ModeToggle} from "@/components/mode-toggle.tsx";
 import AuthDropDown from "@/components/layouts/AuthDropDown";
 import {User} from "@/data/users.ts";
+import CartSheet from "@/components/layouts/CartSheet.tsx";
 
 function Header() {
     return (
@@ -12,6 +13,7 @@ function Header() {
             <MainNavigation items={siteConfig.mainNav} />
             <MobileNavigation items={siteConfig.mainNav} />
             <div className="flex items-center flex-1 justify-end gap-2">
+                <CartSheet />
                 <ModeToggle />
                 <AuthDropDown user={User} />
             </div>
