@@ -8,11 +8,11 @@ import CartSheet from "@/components/layouts/CartSheet.tsx";
 
 function Header() {
     return (
-    <header className="w-full border-b fixed top-0 z-50 overflow-hidden bg-background">
-        <nav className="container m-auto flex items-center  h-16">
+    <header className="w-full border-b fixed z-50 top-0 bg-background">
+        <nav className="container m-auto flex items-center h-16">
             <MainNavigation items={siteConfig.mainNav} />
             <MobileNavigation items={siteConfig.mainNav} />
-            <div className="flex items-center flex-1 justify-end gap-2">
+            <div className="flex items-center flex-1 pr-2 xl:pr-0 justify-end gap-2">
                 <CartSheet />
                 <ModeToggle />
                 <AuthDropDown user={User} />

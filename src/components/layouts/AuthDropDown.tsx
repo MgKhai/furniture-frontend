@@ -38,7 +38,7 @@ function AuthDropDown({user}: UserProps) {
     }
     const initialName = `${user.firstName?.charAt(0) ?? ""}${user?.secondName?.charAt(0) ?? ""}`;
     return (
-        <div>
+        <div className="ml-2">
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                         <Avatar className="size-9">

@@ -1,4 +1,3 @@
-"use client"
 import * as React from "react"
 import {Link} from "react-router";
 import {
@@ -20,7 +19,7 @@ interface MainNavigationProps {
 function MainNavigation({items}: MainNavigationProps) {
 
     return (
-        <div className="hidden gap-7 lg:flex ">
+        <div className="hidden gap-7 z-50 lg:flex ">
             <Link to="/" className="flex items-center space-x-2">
                 <Icons.logo className="size-8" aria-hidden="true" />
                 <span className="font-bold text-lg">{siteConfig.name}</span>
