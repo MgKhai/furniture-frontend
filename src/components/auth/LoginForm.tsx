@@ -21,6 +21,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Link } from "react-router";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 const formSchema = z.object({
   phone: z
@@ -51,6 +53,8 @@ export function LoginForm({
     console.log(values);
     // setLoading(true);
   }
+
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className={cn("mt-sm-5 flex flex-col gap-4", className)} {...props}>
@@ -150,9 +154,10 @@ export function LoginForm({
                   control={form.control}
                   name="password"
                   render={({ field }) => (
-                    <FormItem className="relative w-full">
+                    <FormItem>
                       <div className="flex items-end">
                         <FormLabel className="text-sm">Password</FormLabel>
+
                         <Link
                           to="#"
                           className="ml-auto text-sm underline-offset-4 hover:underline"
@@ -161,21 +166,37 @@ export function LoginForm({
                         </Link>
                       </div>
 
-                      <FormControl className="">
-                        <Input
-                          placeholder="********"
-                          type="password"
-                          {...field}
-                          className="pr-9"
-                          inputMode="numeric"
-                        />
-                      </FormControl>
+                      <div className="relative">
+                        <FormControl>
+                          <Input
+                            placeholder="********"
+                            type={showPassword ? "text" : "password"}
+                            className="pr-10"
+                            {...field}
+                          />
+                        </FormControl>
+
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="absolute top-0 right-0 h-full px-3 hover:bg-transparent"
+                          onClick={() => setShowPassword((prev) => !prev)}
+                        >
+                          {showPassword ? (
+                            <EyeOff className="h-4 w-4" />
+                          ) : (
+                            <Eye className="h-4 w-4" />
+                          )}
+                        </Button>
+                      </div>
+
                       <FormMessage />
                     </FormItem>
                   )}
                 />
                 <Button type="submit" className="mt-4">
-                  <Link to="/login">Login</Link>
+                  Login
                 </Button>
                 <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
                   Or continue with
