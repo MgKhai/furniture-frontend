@@ -5,6 +5,7 @@ export const homeLoader = async () => {
     const response = await api.get("/user/products");
     return response.data;
   } catch (error) {
-    console.error("Error home loading:", error);
+    console.error("HomeLoader error: ", error);
+    throw error;
   }
 };
