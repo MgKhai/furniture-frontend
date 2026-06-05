@@ -79,7 +79,10 @@ function AuthDropDown({ user }: UserProps) {
           <DropdownMenuSeparator />
           <DropdownMenuItem variant="destructive" asChild>
             <Form method="POST" action="logout">
-              <button type="submit" className="flex w-full justify-start gap-2">
+              <button
+                type="submit"
+                className="text-red flex w-full justify-start gap-2"
+              >
                 <LogOutIcon />
                 Log out
                 <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>

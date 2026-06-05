@@ -20,7 +20,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Link, useSubmit } from "react-router";
+import { AlertCircleIcon } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Link, useSubmit, useNavigation, useActionData } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 
@@ -42,6 +44,8 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const submit = useSubmit();
+  const navigate = useNavigation();
+  const actionData = useActionData();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -124,6 +128,14 @@ export function LoginForm({
               </Field>
             </form>
           </FieldGroup> */}
+
+          {actionData?.error && (
+            <Alert variant="destructive" className="mb-2 max-w-md">
+              <AlertCircleIcon />
+              <AlertTitle>Login failed</AlertTitle>
+              <AlertDescription>{actionData.message}</AlertDescription>
+            </Alert>
+          )}
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -196,7 +208,7 @@ export function LoginForm({
                   )}
                 />
                 <Button type="submit" className="mt-4">
-                  Login
+                  {navigate.state === "submitting" ? "Logging in..." : "Login"}
                 </Button>
                 <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
                   Or continue with

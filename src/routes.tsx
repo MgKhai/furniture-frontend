@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, redirect } from "react-router";
 import RootLayout from "@/pages/RootLayout.tsx";
 import HomePage from "@/pages/Home.tsx";
 import AboutPage from "@/pages/About.tsx";
@@ -73,5 +73,6 @@ export const router = createBrowserRouter([
   {
     path: "logout",
     action: logoutAction,
+    loader: () => redirect("/"),
   },
 ]);

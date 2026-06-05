@@ -12,7 +12,7 @@ export const loginAction = async ({ request }: ActionFunctionArgs) => {
   try {
     const response = await authApi.post("login", authData);
     if (response.status !== 200) {
-      return response.data || { error: "Login Failed" };
+      return { error: response.data || "Login Failed" };
     }
 
     const redirectTo = new URL(request.url).searchParams.get("redirect") || "/";
