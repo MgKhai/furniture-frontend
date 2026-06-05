@@ -20,7 +20,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Link } from "react-router";
+import { Link, useSubmit } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 
@@ -41,6 +41,7 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const submit = useSubmit();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -50,8 +51,7 @@ export function LoginForm({
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    // setLoading(true);
+    submit(values, { method: "post", action: "/login" });
   }
 
   const [showPassword, setShowPassword] = useState(false);
