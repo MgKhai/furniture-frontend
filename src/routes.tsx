@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, redirect } from "react-router";
 import RootLayout from "@/pages/RootLayout.tsx";
 import HomePage from "@/pages/Home.tsx";
 import AboutPage from "@/pages/About.tsx";
@@ -15,6 +15,7 @@ const BlogRootLayout = lazy(() => import("@/pages/blogs/BlogRootLayout.tsx"));
 import LoginPage from "@/pages/auth/Login.tsx";
 import RegisterPage from "@/pages/auth/Register.tsx";
 import { homeLoader } from "./router/loader";
+import { loginAction, logoutAction } from "./router/action";
 
 export const router = createBrowserRouter([
   {
@@ -63,9 +64,15 @@ export const router = createBrowserRouter([
   {
     path: "login",
     Component: LoginPage,
+    action: loginAction,
   },
   {
     path: "register",
     Component: RegisterPage,
+  },
+  {
+    path: "logout",
+    action: logoutAction,
+    loader: () => redirect("/"),
   },
 ]);

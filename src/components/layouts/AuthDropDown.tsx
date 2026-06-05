@@ -1,5 +1,5 @@
 import type { User } from "@/types";
-import { Link } from "react-router";
+import { Link, Form } from "react-router";
 import { Button } from "@/components/ui/button.tsx";
 import {
   DropdownMenu,
@@ -78,11 +78,24 @@ function AuthDropDown({ user }: UserProps) {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem variant="destructive" asChild>
-            <Link to="/login">
-              <LogOutIcon />
-              Log out
-              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-            </Link>
+            <Form method="POST" action="logout">
+              <button
+                type="submit"
+                className="text-red flex w-full justify-start gap-2"
+              >
+                <LogOutIcon />
+                Log out
+                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+              </button>
+            </Form>
+            {/* <Form method="POST" action="logout">
+              <button className="w-full" type="submit">
+                <div className="flex">
+                  <LogOutIcon />
+                  Logout
+                </div>
+              </button>
+            </Form> */}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
