@@ -14,7 +14,7 @@ const BlogRootLayout = lazy(() => import("@/pages/blogs/BlogRootLayout.tsx"));
 
 import LoginPage from "@/pages/auth/Login.tsx";
 import RegisterPage from "@/pages/auth/Register.tsx";
-import { homeLoader } from "./router/loader";
+import { homeLoader, loginLoader } from "./router/loader";
 import { loginAction, logoutAction } from "./router/action";
 
 export const router = createBrowserRouter([
@@ -65,6 +65,7 @@ export const router = createBrowserRouter([
     path: "login",
     Component: LoginPage,
     action: loginAction,
+    loader: loginLoader,
   },
   {
     path: "register",
