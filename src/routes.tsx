@@ -13,9 +13,11 @@ const BlogDetail = lazy(() => import("@/pages/blogs/Detail.tsx"));
 const BlogRootLayout = lazy(() => import("@/pages/blogs/BlogRootLayout.tsx"));
 
 import LoginPage from "@/pages/auth/Login.tsx";
-import RegisterPage from "@/pages/auth/Register.tsx";
 import { homeLoader, loginLoader } from "./router/loader";
 import { loginAction, logoutAction } from "./router/action";
+import SignupPage from "./pages/auth/SignUp";
+import AuthRootLayout from "./pages/auth/AuthRootLayout";
+import InputOtpPage from "./pages/auth/InputOtp";
 
 export const router = createBrowserRouter([
   {
@@ -69,7 +71,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "register",
-    Component: RegisterPage,
+    Component: AuthRootLayout,
+    children: [
+      { index: true, Component: SignupPage },
+      { path: "otp", Component: InputOtpPage },
+    ],
   },
   {
     path: "logout",
