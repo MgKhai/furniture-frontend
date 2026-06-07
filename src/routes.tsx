@@ -18,6 +18,7 @@ import { loginAction, logoutAction } from "./router/action";
 import SignupPage from "./pages/auth/SignUp";
 import AuthRootLayout from "./pages/auth/AuthRootLayout";
 import InputOtpPage from "./pages/auth/InputOtp";
+import ConfirmPasswordPage from "./pages/auth/ConfirmPassword";
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +76,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: SignupPage },
       { path: "otp", Component: InputOtpPage },
+      { path: "confirm-password", Component: ConfirmPasswordPage },
     ],
   },
   {
