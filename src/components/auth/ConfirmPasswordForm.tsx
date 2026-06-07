@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
-export function ConfirmPasswordForm({
+export function ConfirmPasswordPage({
   className,
   ...props
 }: React.ComponentProps<"div">) {
