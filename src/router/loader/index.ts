@@ -32,3 +32,13 @@ export const otpLoader = async () => {
   }
   return null;
 };
+
+export const confirmPasswordLoader = async () => {
+  const authStore = useAuthStore.getState();
+
+  if (authStore.status !== "confirm") {
+    return redirect("/register");
+  }
+
+  return null;
+};

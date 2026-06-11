@@ -40,6 +40,7 @@ export function ConfirmPasswordForm({
   const submit = useSubmit();
   const navigate = useNavigation();
   const actionData = useActionData();
+  const [clientError, setClientError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -50,6 +51,11 @@ export function ConfirmPasswordForm({
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    if (values.password !== values.confirmPassword) {
+      setClientError("Passwords do not match");
+      return;
+    }
+    setClientError(null);
     submit(values, { method: "post", action: "/register/confirm-password" });
   }
 
@@ -73,6 +79,14 @@ export function ConfirmPasswordForm({
             <AlertCircleIcon />
             <AlertTitle>Sign up failed</AlertTitle>
             <AlertDescription>{actionData.message}</AlertDescription>
+          </Alert>
+        )}
+
+        {clientError && (
+          <Alert variant="destructive" className="mb-2 max-w-md">
+            <AlertCircleIcon />
+            <AlertTitle>Sign up failed</AlertTitle>
+            <AlertDescription>{clientError}</AlertDescription>
           </Alert>
         )}
         <Form {...form}>
