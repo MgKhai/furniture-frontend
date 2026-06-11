@@ -13,8 +13,14 @@ const BlogDetail = lazy(() => import("@/pages/blogs/Detail.tsx"));
 const BlogRootLayout = lazy(() => import("@/pages/blogs/BlogRootLayout.tsx"));
 
 import LoginPage from "@/pages/auth/Login.tsx";
-import { homeLoader, loginLoader, otpLoader } from "./router/loader";
 import {
+  confirmPasswordLoader,
+  homeLoader,
+  loginLoader,
+  otpLoader,
+} from "./router/loader";
+import {
+  confirmPasswordAction,
   loginAction,
   logoutAction,
   otpAction,
@@ -91,7 +97,12 @@ export const router = createBrowserRouter([
         loader: otpLoader,
         action: otpAction,
       },
-      { path: "confirm-password", Component: ConfirmPasswordPage },
+      {
+        path: "confirm-password",
+        Component: ConfirmPasswordPage,
+        loader: confirmPasswordLoader,
+        action: confirmPasswordAction,
+      },
     ],
   },
   {

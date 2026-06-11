@@ -47,7 +47,7 @@ export const registerAction = async ({ request }: ActionFunctionArgs) => {
   try {
     const response = await authApi.post("register", authData);
     if (response.status !== 200) {
-      return { error: response.data || "Register Failed" };
+      return { error: response.data || "Sending OTP Failed" };
     }
 
     // client state management
@@ -56,7 +56,9 @@ export const registerAction = async ({ request }: ActionFunctionArgs) => {
     return redirect("/register/otp");
   } catch (error) {
     if (error instanceof AxiosError) {
-      const errorMessage = error.response?.data || { error: "Register Failed" };
+      const errorMessage = error.response?.data || {
+        error: "Sending OTP Failed",
+      };
       return errorMessage;
     }
     throw error;
@@ -88,6 +90,40 @@ export const otpAction = async ({ request }: ActionFunctionArgs) => {
     if (error instanceof AxiosError) {
       const errorMessage = error.response?.data || {
         error: "Verfying OTP Failed",
+      };
+      return errorMessage;
+    }
+    throw error;
+  }
+};
+
+export const confirmPasswordAction = async ({
+  request,
+}: ActionFunctionArgs) => {
+  const authStore = useAuthStore.getState();
+  const formData = await request.formData();
+
+  const credentials = {
+    phone: authStore.phone,
+    password: formData.get("password"),
+    token: authStore.token,
+  };
+
+  try {
+    const response = await authApi.post("confirm-password", credentials);
+
+    if (response.status !== 200) {
+      return { error: response.data || "Registration Failed" };
+    }
+
+    // client state management
+    authStore.clearAuth();
+
+    return redirect("/");
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const errorMessage = error.response?.data || {
+        error: "Registration Failed",
       };
       return errorMessage;
     }
