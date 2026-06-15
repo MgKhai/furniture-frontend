@@ -11,9 +11,13 @@ export const api = axios.create({
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    console.log("Interceptor error:", error);
+    console.log("Response:", error.response);
+
     if (error.response?.status === 401) {
       window.location.href = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
     }
+
     return Promise.reject(error);
   },
 );
