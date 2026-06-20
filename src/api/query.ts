@@ -1,4 +1,4 @@
-import { QueryClient, keepPreviousData, useQuery } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import { api } from ".";
 
 export const queryClient = new QueryClient({
