@@ -1,9 +1,16 @@
-import { Link, useLoaderData } from "react-router";
+import {
+  Link,
+  // useLoaderData
+} from "react-router";
 import Couch from "@/data/images/couch.png";
 import { Button } from "@/components/ui/button.tsx";
 import { CarouselCard } from "@/components/products/CarouselCard.tsx";
 import BlogCard from "@/components/blogs/BlogCard.tsx";
 import ProductCard from "@/components/products/ProductCard.tsx";
+import { useQuery } from "@tanstack/react-query";
+import { postQuery, productQuery } from "@/api/query";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Title = ({
   title,
@@ -23,7 +30,58 @@ const Title = ({
 );
 
 function Home() {
-  const { productsData, postsData } = useLoaderData();
+  //   const { productsData, postsData } = useLoaderData();
+
+  const {
+    data: productsData,
+    isLoading: isLoadingProducts,
+    isError: isErrorProducts,
+    error: errorProducts,
+    refetch: refetchProducts,
+  } = useQuery(productQuery("?limits=8"));
+
+  const {
+    data: postsData,
+    isLoading: isLoadingPosts,
+    isError: isErrorPosts,
+    error: errorPosts,
+    refetch: refetchPosts,
+  } = useQuery(postQuery("?limits=3"));
+
+  if (isLoadingProducts || isLoadingPosts) {
+    return (
+      <div className="container mx-auto my-32 flex flex-1 place-content-center">
+        <Card className="w-full max-w-xs border-0">
+          <CardHeader>
+            <Skeleton className="h-4 w-2/3" />
+            <Skeleton className="h-4 w-1/2" />
+          </CardHeader>
+          <CardContent>
+            <Skeleton className="aspect-video w-full" />
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (isErrorProducts || isErrorPosts) {
+    return (
+      <div className="container mx-auto my-32 flex flex-1 place-content-center">
+        <p className="text-red">
+          Error: {errorProducts?.message ?? errorPosts?.message}
+        </p>
+        <button
+          onClick={() => {
+            refetchProducts();
+            refetchPosts();
+          }}
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="container mx-auto">
@@ -60,7 +118,7 @@ function Home() {
 
         {/*Carousel Card*/}
         <div className="my-4">
-          <CarouselCard products={productsData.products} />
+          {productsData && <CarouselCard products={productsData.products} />}
         </div>
 
         {/*Product Section*/}
@@ -72,14 +130,16 @@ function Home() {
           />
         </div>
         <div className="grid grid-cols-1 gap-6 px-3 md:grid-cols-2 lg:grid-cols-4 lg:px-0">
-          <ProductCard products={productsData.products.slice(0, 4)} />
+          {productsData && (
+            <ProductCard products={productsData.products.slice(0, 4)} />
+          )}
         </div>
 
         {/*Blog Section*/}
         <div className="mx-3 mt-15 mb-10 md:mx-0">
           <Title title="Recent Blogs" href="/blog" sideText="View All Posts" />
         </div>
-        <BlogCard posts={postsData.posts} />
+        {postsData && <BlogCard posts={postsData.posts} />}
       </div>
     </>
   );
