@@ -1,23 +1,30 @@
-import { api, authApi } from "@/api";
+import { authApi } from "@/api";
+import { postQuery, productQuery, queryClient } from '@/api/query';
 import useAuthStore from "@/store/authStore";
 import { redirect } from "react-router";
 
-export const homeLoader = async () => {
-  try {
-    // const response = await api.get("user/products");
-    // return response.data;
-    const products = await api.get("user/products?limits=8");
-    const posts = await api.get("user/posts/infinite?limits=3");
-    // const [products, posts] = await Promise.all([
-    //   await api.get("user/products?limits=8"),
-    //   await api.get("user/posts/infinite?limits=3"),
-    // ]);
-    return { productsData: products.data, postsData: posts.data };
-  } catch (error) {
-    console.error("HomeLoader error: ", error);
-    throw error;
-  }
-};
+// export const homeLoader = async () => {
+//   try {
+//     // const response = await api.get("user/products");
+//     // return response.data;
+//     const products = await api.get("user/products?limits=8");
+//     const posts = await api.get("user/posts/infinite?limits=3");
+//     // const [products, posts] = await Promise.all([
+//     //   await api.get("user/products?limits=8"),
+//     //   await api.get("user/posts/infinite?limits=3"),
+//     // ]);
+//     return { productsData: products.data, postsData: posts.data };
+//   } catch (error) {
+//     console.error("HomeLoader error: ", error);
+//     throw error;
+//   }
+// };
+
+export const homeLoader = async() => {
+  await queryClient.ensureQueryData(productQuery("?limits=8"));
+  await queryClient.ensureQueryData(postQuery("?limits=3"));
+  return null;
+}
 
 export const loginLoader = async () => {
   try {
