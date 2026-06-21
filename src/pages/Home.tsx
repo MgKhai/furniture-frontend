@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button.tsx";
 import { CarouselCard } from "@/components/products/CarouselCard.tsx";
 import BlogCard from "@/components/blogs/BlogCard.tsx";
 import ProductCard from "@/components/products/ProductCard.tsx";
-import { useQuery } from "@tanstack/react-query";
+import { 
+  // useQuery, 
+  useSuspenseQuery } from "@tanstack/react-query";
 import { postQuery, productQuery } from "@/api/query";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+// import { Card, CardContent, CardHeader } from "@/components/ui/card";
+// import { Skeleton } from "@/components/ui/skeleton";
 
 const Title = ({
   title,
@@ -30,57 +32,64 @@ const Title = ({
 );
 
 function Home() {
+  // loader
   //   const { productsData, postsData } = useLoaderData();
 
-  const {
-    data: productsData,
-    isLoading: isLoadingProducts,
-    isError: isErrorProducts,
-    error: errorProducts,
-    refetch: refetchProducts,
-  } = useQuery(productQuery("?limits=8"));
+  // tanstack query
+  // const {
+  //   data: productsData,
+  //   isLoading: isLoadingProducts,
+  //   isError: isErrorProducts,
+  //   error: errorProducts,
+  //   refetch: refetchProducts,
+  // } = useQuery(productQuery("?limits=8"));
 
-  const {
-    data: postsData,
-    isLoading: isLoadingPosts,
-    isError: isErrorPosts,
-    error: errorPosts,
-    refetch: refetchPosts,
-  } = useQuery(postQuery("?limits=3"));
+  // const {
+  //   data: postsData,
+  //   isLoading: isLoadingPosts,
+  //   isError: isErrorPosts,
+  //   error: errorPosts,
+  //   refetch: refetchPosts,
+  // } = useQuery(postQuery("?limits=3"));
 
-  if (isLoadingProducts || isLoadingPosts) {
-    return (
-      <div className="container mx-auto my-32 flex flex-1 place-content-center">
-        <Card className="w-full max-w-xs border-0">
-          <CardHeader>
-            <Skeleton className="h-4 w-2/3" />
-            <Skeleton className="h-4 w-1/2" />
-          </CardHeader>
-          <CardContent>
-            <Skeleton className="aspect-video w-full" />
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+  // if (isLoadingProducts || isLoadingPosts) {
+  //   return (
+  //     <div className="container mx-auto my-32 flex flex-1 place-content-center">
+  //       <Card className="w-full max-w-xs border-0">
+  //         <CardHeader>
+  //           <Skeleton className="h-4 w-2/3" />
+  //           <Skeleton className="h-4 w-1/2" />
+  //         </CardHeader>
+  //         <CardContent>
+  //           <Skeleton className="aspect-video w-full" />
+  //         </CardContent>
+  //       </Card>
+  //     </div>
+  //   );
+  // }
 
-  if (isErrorProducts || isErrorPosts) {
-    return (
-      <div className="container mx-auto my-32 flex flex-1 place-content-center">
-        <p className="text-red">
-          Error: {errorProducts?.message ?? errorPosts?.message}
-        </p>
-        <button
-          onClick={() => {
-            refetchProducts();
-            refetchPosts();
-          }}
-        >
-          Retry
-        </button>
-      </div>
-    );
-  }
+  // if (isErrorProducts || isErrorPosts) {
+  //   return (
+  //     <div className="container mx-auto my-32 flex flex-1 place-content-center">
+  //       <p className="text-red">
+  //         Error: {errorProducts?.message ?? errorPosts?.message}
+  //       </p>
+  //       <button
+  //         onClick={() => {
+  //           refetchProducts();
+  //           refetchPosts();
+  //         }}
+  //       >
+  //         Retry
+  //       </button>
+  //     </div>
+  //   );
+  // }
+
+  // tanstack & loader
+  const { data: productsData } = useSuspenseQuery(productQuery("?limits=8"));
+  const { data: postsData } = useSuspenseQuery(postQuery("?limits=3"));
+
 
   return (
     <>
