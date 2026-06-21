@@ -19,9 +19,9 @@ type UserName = {
   fullName: string;
 };
 
-type Tag = {
-  name: string;
-};
+// type Tag = {
+//   name: string;
+// };
 
 export type MainNavItem = NavItemWithChildren;
 
@@ -46,7 +46,7 @@ export type Post = {
   image: string;
   body: string;
   updated_at: string;
-  tags: Tag[];
+  // tags: Tag[];
 };
 
 export interface FilterItem {
