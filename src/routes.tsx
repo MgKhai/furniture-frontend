@@ -13,7 +13,13 @@ const BlogDetail = lazy(() => import("@/pages/blogs/Detail.tsx"));
 const BlogRootLayout = lazy(() => import("@/pages/blogs/BlogRootLayout.tsx"));
 
 import LoginPage from "@/pages/auth/Login.tsx";
-import { confirmPasswordLoader, loginLoader, otpLoader, homeLoader } from "./router/loader";
+import {
+  confirmPasswordLoader,
+  loginLoader,
+  otpLoader,
+  homeLoader,
+  blogInfiniteLoader,
+} from "./router/loader";
 import {
   confirmPasswordAction,
   loginAction,
@@ -35,7 +41,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: HomePage,
-        loader: homeLoader
+        loader: homeLoader,
       },
       { path: "about", Component: AboutPage },
       {
@@ -53,6 +59,7 @@ export const router = createBrowserRouter([
                 <Blog />
               </Suspense>
             ),
+            loader: blogInfiniteLoader,
           },
           {
             path: ":postId",
