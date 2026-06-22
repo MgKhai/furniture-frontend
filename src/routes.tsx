@@ -19,6 +19,7 @@ import {
   otpLoader,
   homeLoader,
   blogInfiniteLoader,
+  postLoader,
 } from "./router/loader";
 import {
   confirmPasswordAction,
@@ -68,6 +69,7 @@ export const router = createBrowserRouter([
                 <BlogDetail />
               </Suspense>
             ),
+            loader: postLoader,
           },
         ],
       },
