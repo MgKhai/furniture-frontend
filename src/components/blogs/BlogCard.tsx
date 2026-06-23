@@ -16,6 +16,8 @@ function BlogCard({ posts }: BlogCardProps) {
             src={imageUrl + post.image}
             alt={post.title}
             className="w-full rounded-2xl"
+            loading="lazy"
+            decoding="async"
           />
           <h3 className="mt-2 ml-4 line-clamp-1 font-semibold">{post.title}</h3>
           <div className="mt-2 ml-4 text-sm">
