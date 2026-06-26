@@ -1,4 +1,4 @@
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient, keepPreviousData } from "@tanstack/react-query";
 import { api } from ".";
 
 export const queryClient = new QueryClient({
@@ -65,4 +65,46 @@ const fetchCategoryType = async () =>
 export const categoryTypeQuery = () => ({
   queryKey: ["category", "type"],
   queryFn: fetchCategoryType,
+});
+
+const fetchInfiniteProducts = async ({
+  pageParam = null,
+  categories = null,
+  types = null,
+}: {
+  pageParam?: number | null;
+  categories: string | null;
+  types: string | null;
+}) => {
+  let query = pageParam ? `?limits=9&cursor=${pageParam}` : "";
+
+  if (categories) {
+    query += `&categories=${categories}`;
+  }
+
+  if (types) {
+    query += `&types=${types}`;
+  }
+
+  const response = await api.get(`user/products${query}`);
+  return response.data;
+};
+
+export const productInfiniteQuery = (
+  categories: string | null = null,
+  types: string | null = null,
+) => ({
+  queryKey: [
+    "products",
+    "infinite",
+    categories ?? undefined,
+    types ?? undefined,
+  ],
+  queryFn: ({ pageParam }: { pageParam?: number | null | undefined }) =>
+    fetchInfiniteProducts({ pageParam, categories, types }),
+  placeHolderData: keepPreviousData,
+  initialPageParam: null, // start with no cursor
+  getNextPageParam: (lastPage, pages) => lastPage.nextCursor ?? undefined,
+  // getPreviousPageParam: (firstPage, pages) => firstPage.prevCursor ?? undefined,
+  // maxPages: 5, // Limit to 5 pages
 });
