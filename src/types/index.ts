@@ -15,6 +15,11 @@ type Image = {
   path: string;
 };
 
+export type Category = {
+  id: number;
+  name: string;
+};
+
 type UserName = {
   fullName: string;
 };
