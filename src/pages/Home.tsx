@@ -7,9 +7,10 @@ import { Button } from "@/components/ui/button.tsx";
 import { CarouselCard } from "@/components/products/CarouselCard.tsx";
 import BlogCard from "@/components/blogs/BlogCard.tsx";
 import ProductCard from "@/components/products/ProductCard.tsx";
-import { 
-  // useQuery, 
-  useSuspenseQuery } from "@tanstack/react-query";
+import {
+  // useQuery,
+  useSuspenseQuery,
+} from "@tanstack/react-query";
 import { postQuery, productQuery } from "@/api/query";
 // import { Card, CardContent, CardHeader } from "@/components/ui/card";
 // import { Skeleton } from "@/components/ui/skeleton";
@@ -90,7 +91,6 @@ function Home() {
   const { data: productsData } = useSuspenseQuery(productQuery("?limits=8"));
   const { data: postsData } = useSuspenseQuery(postQuery("?limits=3"));
 
-
   return (
     <>
       <div className="container mx-auto">
@@ -135,7 +135,7 @@ function Home() {
           <Title
             title="Featured Products"
             href="/product"
-            sideText="View All Posts"
+            sideText="View All Products"
           />
         </div>
         <div className="grid grid-cols-1 gap-6 px-3 md:grid-cols-2 lg:grid-cols-4 lg:px-0">
