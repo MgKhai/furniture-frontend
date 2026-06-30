@@ -10,7 +10,7 @@ export interface NavItemWithChildren extends NavItem {
   title: string;
 }
 
-type Image = {
+export type Image = {
   id: number;
   path: string;
 };

@@ -108,3 +108,19 @@ export const productInfiniteQuery = (
   // getPreviousPageParam: (firstPage, pages) => firstPage.prevCursor ?? undefined,
   // maxPages: 5, // Limit to 5 pages
 });
+
+const fetchOneProduct = async (id: number) => {
+  const product = await api.get(`user/products/${id}`).then((res) => res.data);
+  if (!product) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return product;
+};
+
+export const oneProductQuery = (id: number) => ({
+  queryKey: ["products", "detail", id],
+  queryFn: () => fetchOneProduct(id),
+});
