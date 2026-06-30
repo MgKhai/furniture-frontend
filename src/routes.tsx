@@ -21,6 +21,7 @@ import {
   blogInfiniteLoader,
   postLoader,
   productInfiniteLoader,
+  productLoader,
 } from "./router/loader";
 import {
   confirmPasswordAction,
@@ -83,7 +84,11 @@ export const router = createBrowserRouter([
             Component: ProductPage,
             loader: productInfiniteLoader,
           },
-          { path: ":productId", Component: ProductDetail },
+          {
+            path: ":productId",
+            Component: ProductDetail,
+            loader: productLoader,
+          },
         ],
       },
     ],
