@@ -1,5 +1,9 @@
 import * as React from "react";
-import { Link, useLoaderData } from "react-router";
+import {
+  // Link,
+  useLoaderData,
+  useNavigate,
+} from "react-router";
 import { Button } from "@/components/ui/button.tsx";
 import { Icons } from "@/components/ui/icons.tsx";
 import { Separator } from "@/components/ui/separator";
@@ -28,6 +32,7 @@ import ProductCard from "@/components/products/ProductCard";
 
 const imageUrl = import.meta.env.VITE_IMAGE_URL;
 function ProductDetail() {
+  const navigate = useNavigate();
   // const { productId } = useParams();
   // const product = products.find((product) => product.id === productId);
 
@@ -41,11 +46,12 @@ function ProductDetail() {
 
   return (
     <div className="container mx-auto my-6 px-4 lg:px-0">
-      <Button variant="outline" asChild>
-        <Link to="/product">
+      <Button variant="outline" onClick={() => navigate(-1)}>
+        <Icons.arrowLeft aria-hidden="true" />
+        {/* <Link to="/product">
           {" "}
           <Icons.arrowLeft aria-hidden="true" /> All Products{" "}
-        </Link>
+        </Link> */}
       </Button>
       <section className="gap5 mt-6 mb-15 flex flex-col md:flex-row md:gap-12">
         {/*Carousel Product Image*/}

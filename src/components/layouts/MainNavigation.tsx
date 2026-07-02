@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,9 +17,17 @@ interface MainNavigationProps {
 }
 
 function MainNavigation({ items }: MainNavigationProps) {
+  const location = useLocation();
   return (
     <div className="z-50 hidden gap-7 lg:flex">
-      <Link to="/" className="flex items-center space-x-2">
+      <Link
+        to="/"
+        className="flex items-center space-x-2"
+        state={{
+          productSearch:
+            location.pathname === "/product" ? location.search : "",
+        }}
+      >
         <Icons.logo className="size-8" aria-hidden="true" />
         <span className="text-lg font-bold">{siteConfig.name}</span>
         <span className="sr-only">Home</span>

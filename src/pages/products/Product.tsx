@@ -6,7 +6,7 @@ import { useInfiniteQuery, useSuspenseQuery } from "@tanstack/react-query";
 import {
   categoryTypeQuery,
   productInfiniteQuery,
-  queryClient,
+  // queryClient,
 } from "@/api/query";
 import { Button } from "@/components/ui/button";
 import { useSearchParams } from "react-router";
