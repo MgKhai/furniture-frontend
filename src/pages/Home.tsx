@@ -1,6 +1,7 @@
 import {
   Link,
-  // useLoaderData
+  // useLoaderData,
+  useLocation,
 } from "react-router";
 import Couch from "@/data/images/couch.png";
 import { Button } from "@/components/ui/button.tsx";
@@ -87,6 +88,9 @@ function Home() {
   //   );
   // }
 
+  const location = useLocation();
+  const productSearch = location.state?.productSearch ?? "";
+
   // tanstack & loader
   const { data: productsData } = useSuspenseQuery(productQuery("?limits=8"));
   const { data: postsData } = useSuspenseQuery(postQuery("?limits=3"));
@@ -134,7 +138,7 @@ function Home() {
         <div className="mx-3 mt-15 mb-10 md:mx-0">
           <Title
             title="Featured Products"
-            href="/product"
+            href={`/product${productSearch}`}
             sideText="View All Products"
           />
         </div>
